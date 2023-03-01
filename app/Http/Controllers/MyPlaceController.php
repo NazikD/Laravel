@@ -63,7 +63,11 @@ class MyPlaceController extends Controller
         return redirect()->route('post.show', $post->id); // после создания ссылается на страницу поста
     }
 
-
+    public function destroy(Frame $post)
+    {
+        $post->delete();
+        return redirect()->route('post.index');
+    }
 
 
 

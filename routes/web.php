@@ -62,3 +62,4 @@ Route::get('/post/{post}', 'App\Http\Controllers\MyPlaceController@show')->name(
 
 Route::get('/post/{post}/edit', 'App\Http\Controllers\MyPlaceController@edit')->name('post.edit'); // edit post
 Route::patch('/post/{post}', 'App\Http\Controllers\MyPlaceController@update')->name('post.update'); // edit post
+Route::delete('/post/{post}', 'App\Http\Controllers\MyPlaceController@destroy')->name('post.delete');
