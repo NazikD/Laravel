@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Frame;
 
@@ -23,12 +24,22 @@ class MyPlaceController extends Controller
     public function index() // выводит все данные из таблицы 
     {
         $frames = Frame::all();
+        // $category = Category::find(1);
+
         return view('post.index', compact('frames'));
+
+
+        //обращение к связанным таблицам (Frame and Category)
+        // $ukrainian = Frame::where('category_id', $category->id)->get();
+        // dd($category->Country);
+        // dd($category->posts);
     }
 
     public function create()
     {
-        return view('post.create');
+        $categories = Category::all();
+        // dd($categories);
+        return view('post.create', compact('categories'));
     }
 
     public function store() // производит валидацию поста и создание 
@@ -36,6 +47,7 @@ class MyPlaceController extends Controller
         $data = request()->validate([
             'Name' => 'string',
             'Password' => 'string',
+            'category_id' => '',
         ]);
         Frame::create($data); //создает в БД пост
         return redirect()->route('post.index'); // после создания ссылается на главную страницу поста
@@ -45,12 +57,14 @@ class MyPlaceController extends Controller
 
     public function show(Frame $post) // принимает значение и проверяет наличие данного поста. В случае ошибки возвращает 404
     {
-        return view('post.show', compact('post'));
+        $categories = Category::all();
+        return view('post.show', compact('post', 'categories'));
     }
 
     public function edit(Frame $post)
     {
-        return view('post.edit', compact('post'));
+        $categories = Category::all();
+        return view('post.edit', compact('post', 'categories'));
     }
 
     public function update(Frame $post) // производит валидацию поста и одновление 

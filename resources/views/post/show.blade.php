@@ -1,7 +1,9 @@
 <!-- Страница с постом, где указана подробная информация -->
 
 <div>
-    <div>{{$post->id}}. {{$post->Name}} {{$post->Password}}</div>
+    @foreach($categories as $category)
+    <div>{{$post->id}}. {{$post->Name}} {{$post->Password}} {{$category->Country}}</div>
+    @endforeach
     <!-- позволяет вернутся на главную страницу всех постов -->
     <div><a href="{{route ('post.index')}}">Back</a></div>
     <!-- позволяет отредактировать пост. В значение пути прописан ID, взятый из GET запроса -->

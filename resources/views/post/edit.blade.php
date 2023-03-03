@@ -17,6 +17,16 @@
                 <label for="pass" class="form-label">Password</label>
                 <input type="text" name="Password" class="form-control" id="pass" value="{{$post->Password}}">
             </div>
+            <div>
+                <div>
+                    <label for="Country">Country</label>
+                    <select name="category_id->id === $post->category->id ? ' selected ' ; ''">
+                        @foreach($categories as $category)
+                        <option {{$category }} value="{{$category->id}}">{{$category->Country}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             <button type=" submit" class="btn btn-primary">Create</button>
         </form>
     </div>

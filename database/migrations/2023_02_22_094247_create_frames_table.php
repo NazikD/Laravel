@@ -19,15 +19,15 @@ return new class extends Migration
 
             $table->softDeletes();
 
-            // $table->unsignedBigInteger('category_id')->nullable();
-            // $table->index('category_id', 'frame_category_idx');
-            // $table->foreign('category_id', 'frame_category_fk')->on('categories')->references('id');
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->index('category_id', 'frame_category_idx');
+            $table->foreign('category_id', 'frame_category_fk')->on('categories')->references('id');
         });
     }
 
     /**
      * Reverse the migrations.
-     */ 
+     */
     public function down(): void
     {
         Schema::dropIfExists('frames');
